@@ -1,0 +1,4 @@
+[
+  { "Id": "box1", "Name": "Box 1", "Note": "203.0.113.10", "LocalPort": 18787, "RemotePort": 8787, "SshHost": "monitor-box1" },
+  { "Id": "box2", "Name": "Box 2", "Note": "203.0.113.11", "LocalPort": 18788, "RemotePort": 8787, "SshHost": "monitor-box2" }
+]

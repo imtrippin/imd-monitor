@@ -1,0 +1,39 @@
+# Build output and dependencies (the hub and deploy build web/dist locally)
+web/node_modules/
+web/dist/
+
+# Local backups, caches, logs
+backup/
+*.bak
+*.bak-*
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db
+
+# Screenshots stay local (they show a real fleet's accounts, IPs and tokens)
+docs/*.png
+!docs/screenshot.png
+
+# Environment-specific files: the real ones stay local, the *.example.* files are tracked
+deploy/config*.json
+!deploy/config.example.json
+deploy/archive/
+windows/boxes.json
+watch/watch.json
+
+# The silent launcher's stop signal and transcript
+windows/stop.flag
+
+# The hub's toast state (carries token ids)
+windows/.toast-state.json
+windows/launcher.pid
+
+# Internal operations diaries of one fleet (kept locally, never published)
+docs/verification.md
+docs/watch-followups-*.md
+
+# Seat discovery output (deploy/discover-seats.sh): carries token ids and the NFT wallet
+setup/*
+!setup/.gitkeep

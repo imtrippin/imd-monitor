@@ -1,0 +1,29 @@
+{
+  "_comment": "Copy to config.json (one file per box, e.g. config-box2.json) and list the seats that box runs: seat = Linux user, token = collection token id, runtime = claude|codex, account = the label shown on the dashboard (seats sharing an account are grouped). Real configs are git-ignored. The backend reads this file from IMD_MONITOR_CONFIG (default /etc/imd-monitor/config.json); IMD_MONITOR_PORT overrides port.",
+  "port": 8787,
+  "incoming_dir": "/var/lib/imd-monitor/incoming",
+  "db_path": "/var/lib/imd-monitor/db/history.db",
+  "web_root": "/opt/imd-monitor/server/public",
+  "history_days": 30,
+  "workers": [
+    {
+      "seat": "seat",
+      "alias": "Worker 01",
+      "token": 1001,
+      "runtime": "claude",
+      "account": "Claude · account 1"
+    },
+    {
+      "seat": "seat2",
+      "alias": "Worker 02",
+      "token": 1002,
+      "runtime": "codex",
+      "account": "Codex · account 1"
+    }
+  ],
+  "_comment_watch": "Watcher keys, used only on the one box that runs the heavy-work watcher. When watch_dir exists, /api/work, /api/watch and /api/network switch on (they return {enabled:false} otherwise) and the backend adds its extra public api.imd.fun reads (seat records, health, hourly steps, oracle and publication counts). watch_config = the watcher's config; its tokens list (every seat on every box) is the fleet on the Network tab, falling back to this box's workers. heavy_since = the date shown as 'tracked since' for non-oracle work; null = the date of the first heavy.jsonl line. heavy_baseline = optional rows {seat, key, accepted?, verdict?, outcome?, job} for heavy attempts recorded before the watcher existed (seat = the token id).",
+  "watch_dir": "/var/lib/imd-monitor/watch",
+  "watch_config": "/etc/imd-monitor/watch.json",
+  "heavy_since": null,
+  "heavy_baseline": []
+}

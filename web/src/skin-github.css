@@ -1,0 +1,112 @@
+/* GitHub look: Primer palettes, type and shapes applied through the same
+   tokens the classic look uses, so every component follows. Selected with data-skin="github" on <html>
+   (saved as imd-skin); light/dark still follow the theme toggle and the system preference. */
+
+:root[data-skin="github"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f6f8fa; --hover: #f6f8fa;
+  --ink: #1f2328; --ink-2: #59636e; --muted: #6e7781;
+  --line: #d1d9e0; --grid: #d8dee4; --axis: #afb8c1;
+  --accent: #0969da; --accent-strong: #0550ae; --accent-soft: #ddf4ff; --on-accent-soft: #0969da;
+  --kpi-hi-bg: #dafbe1; --kpi-hi-ink: #1a7f37;
+  --warn: #9a6700; --bad: #d1242f; --track: #e6eaef;
+  --pill-working-bg: #dafbe1; --pill-idle-bg: #f6f8fa; --pill-down-bg: #ffebe9; --pill-stale-bg: #fff8c5;
+  --topbar-bg: #f6f8fa; --overlay: rgba(31,35,40,.5);
+  --claude: #bc4c00; --codex: #8250df;
+  --lav-soft: #fbefff; --on-lav-soft: #8250df;
+  --spark: #8c959f; --nav-underline: #fd8c73;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="github"]:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0d1117; --surface: #0d1117; --surface-2: #161b22; --hover: #161b22;
+    --ink: #e6edf3; --ink-2: #9198a1; --muted: #848d97;
+    --line: #30363d; --grid: #21262d; --axis: #484f58;
+    --accent: #4493f8; --accent-strong: #79c0ff; --accent-soft: rgba(56,139,253,.15); --on-accent-soft: #58a6ff;
+    --kpi-hi-bg: rgba(46,160,67,.15); --kpi-hi-ink: #3fb950;
+    --warn: #d29922; --bad: #f85149; --track: #21262d;
+    --pill-working-bg: rgba(46,160,67,.15); --pill-idle-bg: #161b22; --pill-down-bg: rgba(248,81,73,.12); --pill-stale-bg: rgba(187,128,9,.15);
+    --topbar-bg: #010409; --overlay: rgba(1,4,9,.8);
+    --claude: #db6d28; --codex: #a371f7;
+    --lav-soft: rgba(163,113,247,.15); --on-lav-soft: #a371f7;
+    --spark: #6e7681;
+  }
+}
+:root[data-skin="github"][data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1117; --surface: #0d1117; --surface-2: #161b22; --hover: #161b22;
+  --ink: #e6edf3; --ink-2: #9198a1; --muted: #848d97;
+  --line: #30363d; --grid: #21262d; --axis: #484f58;
+  --accent: #4493f8; --accent-strong: #79c0ff; --accent-soft: rgba(56,139,253,.15); --on-accent-soft: #58a6ff;
+  --kpi-hi-bg: rgba(46,160,67,.15); --kpi-hi-ink: #3fb950;
+  --warn: #d29922; --bad: #f85149; --track: #21262d;
+  --pill-working-bg: rgba(46,160,67,.15); --pill-idle-bg: #161b22; --pill-down-bg: rgba(248,81,73,.12); --pill-stale-bg: rgba(187,128,9,.15);
+  --topbar-bg: #010409; --overlay: rgba(1,4,9,.8);
+  --claude: #db6d28; --codex: #a371f7;
+  --lav-soft: rgba(163,113,247,.15); --on-lav-soft: #a371f7;
+  --spark: #6e7681;
+}
+
+/* type: GitHub sets 14px/1.5 sans everywhere and reserves mono for code */
+[data-skin="github"] body { line-height: 1.5; }
+[data-skin="github"] .eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--muted); }
+[data-skin="github"] .page-head { padding: 28px 0 16px; }
+[data-skin="github"] .page-head h1 { font-size: 28px; font-weight: 600; letter-spacing: 0; margin: 6px 0 6px; }
+[data-skin="github"] .panel-head h3 { font-size: 16px; font-weight: 600; }
+[data-skin="github"] h3.sec { font-weight: 600; }
+[data-skin="github"] .empty, [data-skin="github"] .conn, [data-skin="github"] .search input,
+[data-skin="github"] .toggle button, [data-skin="github"] .slot-num, [data-skin="github"] .empty-spark { font-family: var(--sans); }
+[data-skin="github"] .mini-table th, [data-skin="github"] table.agents th { font-family: var(--sans); font-size: 12px; font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--ink-2); background: var(--surface-2); }
+[data-skin="github"] .mini-table th, [data-skin="github"] .mini-table td { padding: 8px 12px; }
+[data-skin="github"] .kpi-value { font-weight: 600; font-size: 32px; letter-spacing: 0; }
+[data-skin="github"] .kpi-value small { font-size: 16px; }
+[data-skin="github"] .kpi-label { font-weight: 500; }
+[data-skin="github"] .tile-label { font-weight: 600; }
+
+/* header: GitHub's light grey bar with a round mark; underline nav with the coral marker and pill counters */
+[data-skin="github"] .topbar { backdrop-filter: none; background: var(--topbar-bg); }
+[data-skin="github"] .brand .logo { border: 0; border-radius: 50%; background: var(--ink); color: var(--bg); width: 32px; height: 32px; font-family: var(--sans); font-weight: 700; }
+[data-skin="github"] .brand span { color: var(--ink-2); }
+[data-skin="github"] .topnav { gap: 4px; margin-left: 12px; }
+[data-skin="github"] .topnav button { font-weight: 400; color: var(--ink); padding: 8px 10px 9px; border-radius: 6px 6px 0 0; border-bottom-width: 2px; margin-bottom: -13px; padding-bottom: 14px; }
+[data-skin="github"] .topnav button:hover { background: var(--hover); }
+[data-skin="github"] .topnav button.on { font-weight: 600; border-bottom-color: var(--nav-underline); background: transparent; }
+[data-skin="github"] .topnav .count, [data-skin="github"] .tabs .count { font-family: var(--sans); font-size: 12px; font-weight: 500; line-height: 18px; min-width: 20px; text-align: center; padding: 0 6px; border-radius: 2em; background: rgba(175,184,193,.2); color: var(--ink); border: 0; }
+[data-skin="github"] .tabs { gap: 8px; }
+[data-skin="github"] .tabs button { color: var(--ink); padding: 12px 8px 11px; font-weight: 400; margin-bottom: -1px; }
+[data-skin="github"] .tabs button:hover { background: var(--hover); border-radius: 6px 6px 0 0; }
+[data-skin="github"] .tabs button.on { font-weight: 600; border-bottom-color: var(--nav-underline); }
+[data-skin="github"] .tabs button.on .count { background: rgba(175,184,193,.2); color: var(--ink); }
+
+/* controls: GitHub buttons and form fields */
+[data-skin="github"] .btn, [data-skin="github"] .icon-btn { background: var(--surface-2); border: 1px solid var(--line); color: var(--ink); font-weight: 500; box-shadow: 0 1px 0 rgba(31,35,40,.04); }
+[data-skin="github"] .btn:hover, [data-skin="github"] .icon-btn:hover { background: var(--hover); border-color: var(--axis); color: var(--ink); }
+[data-skin="github"] .btn.ghost { color: var(--ink); }
+[data-skin="github"] .selects select, [data-skin="github"] .skin-select { height: 32px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 6px; color: var(--ink); font-size: 14px; }
+[data-skin="github"] .search { height: 32px; background: var(--surface); border-color: var(--line); border-radius: 6px; }
+[data-skin="github"] .search input { font-size: 14px; }
+[data-skin="github"] .toggle { background: var(--surface-2); }
+[data-skin="github"] .toggle button.on { box-shadow: 0 1px 0 rgba(31,35,40,.04); border: 1px solid var(--line); }
+
+/* boxes: borders, no shadows; subtle grey table and tile headers */
+[data-skin="github"] .kpis, [data-skin="github"] .tile, [data-skin="github"] .panel, [data-skin="github"] .verdicts, [data-skin="github"] .cat-list, [data-skin="github"] .note { border-color: var(--line); border-radius: 6px; }
+[data-skin="github"] .tile-top { padding-bottom: 8px; border-bottom: 1px solid var(--grid); }
+[data-skin="github"] .tip { box-shadow: 0 8px 24px rgba(31,35,40,.12); border-radius: 6px; }
+[data-skin="github"] .modal { border-radius: 12px; box-shadow: 0 16px 32px rgba(1,4,9,.35); }
+[data-skin="github"] .meter { height: 8px; border-radius: 6px; } [data-skin="github"] .meter > span { border-radius: 6px; }
+[data-skin="github"] .attention-strip { background: var(--pill-stale-bg); border-color: rgba(212,167,44,.4); }
+[data-skin="github"] .attention-strip.has-bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 9%, var(--surface)); }
+[data-skin="github"] .attention-strip .item { font-size: 14px; }
+
+/* labels: round pills with subtle fills, like issue labels and status badges */
+[data-skin="github"] .pill { font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 0 7px; line-height: 20px; border-radius: 2em; border: 1px solid var(--line); }
+[data-skin="github"] .pill.working, [data-skin="github"] .pill.down, [data-skin="github"] .pill.stale { border-color: transparent; }
+[data-skin="github"] .pill.working { color: var(--kpi-hi-ink); } [data-skin="github"] .pill.working .dot { background: var(--kpi-hi-ink); }
+[data-skin="github"] .chip { font-family: var(--sans); font-size: 12px; font-weight: 500; line-height: 18px; padding: 0 7px; border-radius: 2em; }
+[data-skin="github"] .cat-chip { border-radius: 2em; font-weight: 500; }
+[data-skin="github"] .avatar { border-radius: 50%; }
+[data-skin="github"] .slot-boxes i.on, [data-skin="github"] .meter > span, [data-skin="github"] .conn .dot, [data-skin="github"] .new-dot, [data-skin="github"] .attention-strip .sev.ok { background: var(--kpi-hi-ink); }
+[data-skin="github"] .slot-boxes i.on { border-color: var(--kpi-hi-ink); }
+[data-skin="github"] .meter.warn > span { background: var(--warn); } [data-skin="github"] .meter.bad > span { background: var(--bad); }
+[data-skin="github"] .footer { font-size: 12px; }

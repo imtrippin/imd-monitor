@@ -1,0 +1,38 @@
+[Unit]
+Description=IMD heavy-work watcher (read-only, public API)
+After=network-online.target
+Wants=network-online.target
+# a watcher that keeps exiting is started at most 5 times an hour, then stays stopped instead of polling the API in a loop
+StartLimitIntervalSec=3600
+StartLimitBurst=5
+
+[Service]
+User=imdmon
+Group=imdmon
+Environment=IMD_WATCH_DIR=/var/lib/imd-monitor/watch
+ExecStart=/usr/bin/python3 /opt/imd-monitor/watch/imd_watch.py
+Restart=always
+RestartSec=300
+
+# Hardening (the backend unit's, plus a few): reads /etc/imd-monitor/watch.json (root:imdmon 0640), writes only its data dir.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+ReadOnlyPaths=/opt/imd-monitor /etc/imd-monitor
+ReadWritePaths=/var/lib/imd-monitor/watch
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0027
+MemoryMax=300M
+CPUQuota=25%
+TasksMax=16
+
+[Install]
+WantedBy=multi-user.target

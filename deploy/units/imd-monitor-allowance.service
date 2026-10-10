@@ -1,0 +1,13 @@
+[Unit]
+Description=IMD monitor - per-seat allowance collector (Claude: one tiny probe; Codex: parse rollout)
+
+[Service]
+Type=oneshot
+# --with-allowance costs a little Claude quota (a one-line probe) so this runs infrequently.
+# -I: isolated mode (no user site-packages, no PYTHON* variables), so a file a job writes under the
+# seat's home cannot run code here, outside the job sandbox. Tools are called by absolute path.
+Environment=PATH=/usr/bin:/bin
+UnsetEnvironment=PYTHONPATH PYTHONHOME PYTHONSTARTUP LD_PRELOAD NODE_OPTIONS
+ExecStart=/usr/bin/python3 -I /opt/imd-monitor/collectors/seat-collector.py --with-allowance --out /var/lib/imd-monitor/incoming
+Nice=15
+TimeoutStartSec=120

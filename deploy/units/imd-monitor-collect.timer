@@ -1,0 +1,11 @@
+[Unit]
+Description=IMD monitor - fast collector every 30s
+
+[Timer]
+OnBootSec=20
+OnUnitActiveSec=30
+AccuracySec=5
+Persistent=false
+
+[Install]
+WantedBy=timers.target

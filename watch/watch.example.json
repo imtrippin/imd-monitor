@@ -1,0 +1,13 @@
+{
+  "_comment": "Copy to watch.json (git-ignored) and stage it next to imd_watch.py; install-watch.sh puts it at /etc/imd-monitor/watch.json. tokens = the collection token ids of your seats; queue_probes = one seat per runtime to poll for queue state (the expensive call); wallet = the NFT wallet IMD pays rewards into (omit to disable the payments task). payments_exclude = tx hashes that reached the wallet from the payer but are not rewards (e.g. a refund of your own paid orders); they are never recorded. List EVERY seat on EVERY box in tokens (the token ids of your seat NFTs); queue_probes = a few of them to poll for queue state; wallet = the NFT holder wallet that receives rewards (optional); payments_exclude = tx hashes that are not rewards. payout_senders = the 0x addresses (EOAs) that send IMD's payouts by calling the payer contract; when the list is non-empty, a payer transfer counts as a payment only if one of them sent the tx (one extra blockscout call per new tx), and any other goes to payments-unattributed.jsonl instead of payments.jsonl; empty = every payer transfer counts. A tx is decided once: adding a sender later does not re-check txs already recorded.",
+  "tokens": [
+    "1001",
+    "1002"
+  ],
+  "queue_probes": [
+    "1001"
+  ],
+  "wallet": "0x0000000000000000000000000000000000000000",
+  "payments_exclude": [],
+  "payout_senders": []
+}

@@ -1,0 +1,37 @@
+[Unit]
+Description=IMD worker monitor (loopback dashboard backend)
+Documentation=file:/opt/imd-monitor/README.md
+After=network-online.target
+Wants=network-online.target
+# A port held by another process fails every start: after 5 tries in 5 min the unit stays failed (visible).
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=imdmon
+Group=imdmon
+Environment=IMD_MONITOR_CONFIG=/etc/imd-monitor/config.json
+ExecStart=/usr/bin/node --experimental-sqlite /opt/imd-monitor/server/index.js
+Restart=on-failure
+RestartSec=5
+
+# Hardening: the web process gets no shell, no worker homes, no sudo.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+ReadOnlyPaths=/opt/imd-monitor /etc/imd-monitor
+ReadWritePaths=/var/lib/imd-monitor
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=250M
+CPUQuota=40%
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target
